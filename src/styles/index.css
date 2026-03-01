@@ -1,0 +1,46 @@
+/* ===== ייבוא Tailwind ===== */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== עיצוב בסיסי ===== */
+body {
+  font-family: 'Heebo', sans-serif;
+  background-color: #faf6ef;
+  color: #1a1a1a;
+  direction: rtl;
+}
+
+/* ===== מחלקות עזר מותאמות ===== */
+@layer components {
+
+  /* כפתור ראשי ירוק */
+  .btn-primary {
+    @apply inline-block bg-forest-accent text-white px-8 py-3 rounded-full
+           font-semibold transition-all duration-200
+           hover:-translate-y-0.5 hover:shadow-lg hover:shadow-green-400/30;
+  }
+
+  /* כותרת סקשן */
+  .section-title {
+    @apply font-display text-3xl md:text-4xl text-forest-dark mb-2;
+  }
+
+  /* קו קטן ירוק מתחת לכותרות */
+  .title-divider {
+    @apply w-12 h-0.5 bg-forest-accent rounded mb-4;
+  }
+
+  /* כרטיס פוסט */
+  .post-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-md
+           transition-all duration-300
+           hover:-translate-y-1.5 hover:shadow-xl;
+  }
+
+  /* תג קטגוריה ירוק */
+  .category-tag {
+    @apply inline-block bg-forest-accent text-white text-xs font-bold
+           tracking-widest uppercase px-3 py-1 rounded-full;
+  }
+}
