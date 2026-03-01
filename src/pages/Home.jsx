@@ -21,7 +21,7 @@ export default function Home() {
         {/* תמונת רקע */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1600&q=80"
+            src="https://res.cloudinary.com/dcenbexvc/image/upload/v1770728477/277639446_364194338927345_839136902550693466_n_mwv0pk.jpg"
             alt="ארץ ישראל"
             className="w-full h-full object-cover"
           />
@@ -129,7 +129,7 @@ export default function Home() {
             <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-orange-100">
               {/* ← שנה לתמונה של אלעד */}
               <img
-                src="https://images.unsplash.com/photo-1527066236128-2ff79f7b9705?w=700&q=80"
+                src="https://res.cloudinary.com/dcenbexvc/image/upload/v1772181927/Elad_twmatp.jpg"
                 alt="אלעד דויטש"
                 className="w-full h-80 object-cover"
               />

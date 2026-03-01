@@ -8,7 +8,7 @@ export default function About() {
 
         {/* ← שנה את ה-src לתמונה של אלעד */}
         <img
-          src="https://images.unsplash.com/photo-1527066236128-2ff79f7b9705?w=800&q=80"
+          src="https://res.cloudinary.com/dcenbexvc/image/upload/v1772181927/Elad_twmatp.jpg"
           alt="אלעד דויטש"
           className="w-full h-72 object-cover rounded-2xl shadow-lg mb-8"
         />
@@ -22,7 +22,7 @@ export default function About() {
           <p>
             {/* הוסף כאן את הסיפור של אלעד */}
             הבלוג הזה נולד מתוך צורך פשוט: רציתי לתעד את הטיולים שלי בצורה אמיתית,
-            בלי פילטרים ובלי שקרים.
+            בלי פילטרים  .
           </p>
           <p>
             אתה תמצא כאן מסלולים מפורטים, ציוד שאני ממש משתמש בו, וטיפים שלמדתי
