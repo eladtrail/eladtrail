@@ -1,18 +1,6 @@
-// PostCard.jsx
-// ============================================================
-// כרטיס פוסט — משמש בעמוד הבית ובעמוד הבלוג
-//
-// Props (מה מעבירים לכרטיס):
-//   slug     — נתיב הפוסט (לדוגמה: "shvil-israel")
-//   title    — כותרת הפוסט
-//   excerpt  — תיאור קצר
-//   image    — קישור לתמונה
-//   category — קטגוריה (israel / world / tips / gear)
-//   date     — תאריך (טקסט חופשי)
-// ============================================================
+// components/PostCard.jsx
 import { Link } from 'react-router-dom'
 
-// מיפוי: שם קטגוריה באנגלית → תווית עברית
 const CATEGORY_LABELS = {
   israel: '🇮🇱 ישראל',
   world:  '🌍 חו"ל',
@@ -22,40 +10,25 @@ const CATEGORY_LABELS = {
 
 export default function PostCard({ slug, title, excerpt, image, category, date }) {
   return (
-    <article className="post-card flex flex-col">
-      {/* תמונת שער */}
-      <Link to={`/posts/${slug}`}>
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-52 object-cover"
-          loading="lazy"
-        />
+    <article className="post-card flex flex-col group">
+      <Link to={`/posts/${slug}`} className="overflow-hidden block">
+        <img src={image} alt={title}
+          className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy" />
       </Link>
-
       <div className="p-5 flex flex-col flex-1">
-        {/* תג קטגוריה */}
-        <span className="category-tag mb-3 self-start">
-          {CATEGORY_LABELS[category] || category}
-        </span>
-
-        {/* כותרת */}
+        <span className="category-tag mb-3 self-start">{CATEGORY_LABELS[category] || category}</span>
         <Link to={`/posts/${slug}`}>
-          <h3 className="font-display text-lg text-forest-dark mb-2 hover:text-forest-accent transition-colors leading-snug">
+          <h3 className="font-display text-lg text-dark mb-2
+                         hover:text-orange-600 transition-colors leading-snug">
             {title}
           </h3>
         </Link>
-
-        {/* תקציר */}
-        <p className="text-sm text-gray-500 flex-1 leading-relaxed">{excerpt}</p>
-
-        {/* תאריך + קרא עוד */}
-        <div className="flex justify-between items-center mt-4 text-xs text-gray-400">
+        <p className="text-sm text-dark/50 flex-1 leading-relaxed">{excerpt}</p>
+        <div className="flex justify-between items-center mt-4 pt-4 border-t border-orange-50 text-xs text-dark/40">
           <span>{date}</span>
-          <Link
-            to={`/posts/${slug}`}
-            className="text-forest-accent font-semibold hover:opacity-70 transition-opacity"
-          >
+          <Link to={`/posts/${slug}`}
+            className="text-orange-600 font-semibold hover:opacity-70 transition-opacity flex items-center gap-1">
             קרא עוד ←
           </Link>
         </div>

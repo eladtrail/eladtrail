@@ -33,8 +33,8 @@ export default function Blog() {
               onClick={() => setActive(f.value)}
               className={`px-5 py-2 rounded-full border-2 text-sm font-bold transition-all
                 ${active === f.value
-                  ? 'bg-forest-dark text-white border-forest-dark'
-                  : 'border-forest-dark text-forest-dark hover:bg-forest-dark hover:text-white'
+                  ? 'bg-brand-accent text-white border-brand-accent'
+                  : 'border-dark/20 text-dark/70 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-300'
                 }`}
             >
               {f.label}
