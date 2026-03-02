@@ -12,6 +12,15 @@
 
 export const POSTS = [
   {
+    slug:     'ein-gedi',
+    title:    'עין גדי — גן עדן על שפת ים המלח',
+    excerpt:  'מפלים, יעלים, ים המלח ושמורת טבע שאין כמוה בישראל. מדריך מקיף לנחל דוד, נחל ערוגות וכל מה שצריך לדעת לפני שיוצאים.',
+    image:    'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_1_rm1for.jpg',
+    category: 'israel',
+    date:     'אפריל 2025',
+    tags:     ['עין גדי', 'נחל דוד', 'ים המלח', 'שמורת טבע'],
+  },
+  {
     slug:     'albania-friends',
     title:    'אלבניה עם החברים',
     excerpt:  'קיץ 2020, חמישה חברים והמדינה הכי מפתיעה באירופה — ריביירה, הרים, אוכל מדהים ואנשים שחיממו את הלב.',

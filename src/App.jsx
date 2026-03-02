@@ -14,6 +14,7 @@ import Blog    from './pages/Blog'
 //   1. צור קובץ ב- src/posts/שם-הפוסט.jsx
 //   2. ייבא אותו כאן (import)
 //   3. הוסף <Route> בהמשך
+import PostEinGedi       from './posts/ein-gedi'
 import PostAlbaniaFriends from './posts/albania-friends'
 import PostBashanitRange from './posts/bashanit-range'
 import PostShvilIsrael from './posts/shvil-israel'
@@ -33,6 +34,7 @@ export default function App() {
 
         {/* ===== נתיבי הפוסטים ===== */}
         {/* path="/posts/שם-הנתיב" — חייב להתאים ל- slug בקובץ הפוסט */}
+        <Route path="/posts/ein-gedi"           element={<PostEinGedi />} />
         <Route path="/posts/albania-friends"    element={<PostAlbaniaFriends />} />
         <Route path="/posts/bashanit-range"    element={<PostBashanitRange />} />
         <Route path="/posts/shvil-israel"      element={<PostShvilIsrael />} />
