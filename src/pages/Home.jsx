@@ -118,9 +118,11 @@ export default function Home() {
       {/* ===== פוסטים אחרונים ===== */}
       <AnimatedSection className="py-20 px-6 bg-cream">
         <div className="max-w-6xl mx-auto">
-          <div className="title-divider" />
-          <h2 className="section-title">הפוסטים האחרונים</h2>
-          <p className="text-dark/50 mb-10">תוכן אמיתי מהשטח, ללא עריכה</p>
+          <div className="text-center mb-10">
+            <div className="title-divider mx-auto" />
+            <h2 className="section-title">הפוסטים האחרונים</h2>
+            <p className="text-dark/50 mt-2">תוכן אמיתי מהשטח, ללא עריכה</p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
             {latestPosts.map((p) => <PostCard key={p.slug} {...p} />)}
           </div>
@@ -177,7 +179,7 @@ export default function Home() {
 
       {/* ===== אודות ===== */}
       <AnimatedSection className="py-20 px-6 bg-cream" y={24}>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: 30 }}
