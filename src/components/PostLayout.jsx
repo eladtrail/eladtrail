@@ -181,7 +181,7 @@ export function InlineImage({ src, alt, caption }) {
       </AnimatedSection>
 
       {open && (
-        <Lightbox src={src} alt={alt} caption={caption} onClose={() => setOpen(false)} />
+        <Lightbox images={[{ src, alt, caption }]} index={0} onClose={() => setOpen(false)} />
       )}
     </>
   )

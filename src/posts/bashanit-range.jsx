@@ -1,4 +1,5 @@
 import PostLayout, { InlineImage } from '../components/PostLayout'
+import PhotoGrid from '../components/PhotoGrid'
 
 const META = {
   title:    'רכס בשנית — לב הגולן הצפוני',
@@ -474,6 +475,27 @@ export default function PostBashanitRange() {
           </div>
         ))}
       </div>
+
+      {/* ── גלריה מהשטח ────────────────────────────────────── */}
+      <h2 className="post-h2">גלריה — מהשטח</h2>
+
+      <PhotoGrid images={[
+        {
+          src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1770912581/Bashanit_1_yrtmvf.webp',
+          alt: 'רכס בשנית — הגולן הצפוני',
+          caption: 'רכס בשנית — נוף מהרמה הוולקנית',
+        },
+        {
+          src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1770912579/Bashanit_2_vhxm9c.webp',
+          alt: 'רכס בשנית',
+          caption: 'הגולן הצפוני — יפה בכל עונה',
+        },
+        {
+          src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1770912912/NofHermon_fdfne3.jpg',
+          alt: 'נוף החרמון מהרכס',
+          caption: 'נוף החרמון מרכס בשנית — בגובה מבט',
+        },
+      ]} />
 
       <blockquote className="post-quote">
         "הגולן הצפוני הוא לא פארק בילוי — הוא שטח חי, פעיל, ומלא הפתעות.
