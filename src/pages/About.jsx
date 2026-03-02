@@ -1,8 +1,10 @@
 // pages/About.jsx
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import AnimatedSection from '../components/AnimatedSection'
 
 const STATS = [
-  { num: '8+',    label: 'שנות טיולים' },
+  { num: '20+',   label: 'שנות טיולים' },
   { num: '1,100', label: 'ק"מ שביל ישראל' },
   { num: '40+',   label: 'מסלולים מתועדים' },
   { num: '3',     label: 'יבשות' },
@@ -39,13 +41,20 @@ const SOCIAL = [
   { name: 'מייל',      emoji: '✉️', url: 'mailto:eladtrail@gmail.com',                             color: 'hover:bg-orange-50 hover:border-orange-400' },
 ]
 
+const cardVariants = {
+  hidden:  { opacity: 0, y: 30 },
+  visible: (i) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.5, ease: 'easeOut', delay: i * 0.1 },
+  }),
+}
+
 export default function About() {
   return (
     <div className="bg-cream">
 
       {/* ── Hero ──────────────────────────────────────────────── */}
       <section className="relative bg-warm border-b border-orange-100 py-20 px-6 overflow-hidden">
-        {/* קישוט רקע */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 opacity-[0.04] text-[260px] select-none pointer-events-none">
           🇮🇱
         </div>
@@ -53,7 +62,12 @@ export default function About() {
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
 
           {/* תמונת פרופיל */}
-          <div className="flex-shrink-0">
+          <motion.div
+            className="flex-shrink-0"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+          >
             <div className="relative w-56 h-56 md:w-64 md:h-64">
               <div className="w-full h-full rounded-3xl overflow-hidden border-4 border-orange-200 shadow-2xl bg-orange-50">
                 <img
@@ -62,16 +76,20 @@ export default function About() {
                   className="w-full h-full object-contain"
                 />
               </div>
-              {/* תג */}
               <div className="absolute -bottom-3 -left-3 bg-orange-600 text-white
                               text-xs font-bold px-4 py-2 rounded-2xl shadow-lg whitespace-nowrap">
                 🇮🇱 קריית מוצקין
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* טקסט היכרות */}
-          <div className="text-center md:text-right">
+          <motion.div
+            className="text-center md:text-right"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: 'easeOut' }}
+          >
             <div className="title-divider mb-4 mx-auto md:mr-0 md:ml-auto" />
             <h1 className="font-display text-4xl md:text-5xl text-dark mb-3 leading-tight">
               היי, אני אלעד 👋
@@ -81,37 +99,48 @@ export default function About() {
               מאמין שטיול אמיתי מתחיל כשהמפה נגמרת.
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-end">
-              <Link to="/blog" className="btn-primary">
-                לכל הפוסטים →
-              </Link>
-              <a href="mailto:eladtrail@gmail.com"
+              <motion.div whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }}>
+                <Link to="/blog" className="btn-primary">לכל הפוסטים →</Link>
+              </motion.div>
+              <motion.a
+                href="mailto:eladtrail@gmail.com"
                 className="inline-block border-2 border-orange-300 text-orange-700 px-6 py-3
-                           rounded-full font-semibold hover:bg-orange-50 transition-colors duration-200">
+                           rounded-full font-semibold hover:bg-orange-50 transition-colors duration-200"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+              >
                 צרו קשר ✉️
-              </a>
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── סטטיסטיקות ───────────────────────────────────────── */}
       <section className="py-12 px-6 bg-white border-b border-orange-100">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-          {STATS.map((s) => (
-            <div key={s.label} className="text-center">
+          {STATS.map((s, i) => (
+            <motion.div
+              key={s.label}
+              className="text-center"
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+            >
               <div className="font-display text-4xl text-orange-600 mb-1">{s.num}</div>
               <div className="text-dark/50 text-sm">{s.label}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* ── הסיפור שלי ───────────────────────────────────────── */}
-      <section className="py-16 px-6">
+      <AnimatedSection className="py-16 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="title-divider mb-4" />
           <h2 className="font-display text-3xl text-dark mb-8">הסיפור שלי</h2>
-
           <div className="space-y-5 text-dark/70 leading-loose text-[1.05rem]">
             <p>
               הכל התחיל בטיול שביל ישראל. לא תכננתי לעשות ממנו כלום — פשוט רציתי
@@ -133,29 +162,38 @@ export default function About() {
             </p>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ── ערכים ────────────────────────────────────────────── */}
       <section className="py-16 px-6 bg-warm">
         <div className="max-w-4xl mx-auto">
-          <div className="title-divider mb-4" />
-          <h2 className="font-display text-3xl text-dark mb-10">למה אני עושה את זה</h2>
+          <AnimatedSection>
+            <div className="title-divider mb-4" />
+            <h2 className="font-display text-3xl text-dark mb-10">למה אני עושה את זה</h2>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {VALUES.map((v) => (
-              <div key={v.title}
+            {VALUES.map((v, i) => (
+              <motion.div
+                key={v.title}
                 className="bg-white rounded-2xl p-6 border border-orange-100 shadow-sm
-                           hover:shadow-md transition-shadow duration-200">
+                           hover:shadow-md transition-shadow duration-200"
+                custom={i}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
+              >
                 <div className="text-3xl mb-3">{v.icon}</div>
                 <h3 className="font-display text-lg text-dark mb-2">{v.title}</h3>
                 <p className="text-dark/60 text-sm leading-relaxed">{v.text}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ── ציטוט ────────────────────────────────────────────── */}
-      <section className="py-14 px-6 bg-orange-600">
+      <AnimatedSection className="py-14 px-6 bg-orange-600" y={16}>
         <div className="max-w-2xl mx-auto text-center">
           <p className="font-display text-2xl md:text-3xl text-white leading-relaxed italic">
             "מאמין שטיול אמיתי מתחיל כשהמפה נגמרת —
@@ -163,29 +201,34 @@ export default function About() {
           </p>
           <p className="text-orange-200 text-sm font-semibold mt-4">— אלעד דויטש</p>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* ── סושיאל ───────────────────────────────────────────── */}
-      <section className="py-16 px-6 bg-white">
+      <AnimatedSection className="py-16 px-6 bg-white">
         <div className="max-w-3xl mx-auto text-center">
           <div className="title-divider mx-auto mb-4" />
           <h2 className="font-display text-3xl text-dark mb-2">בואו נתחבר</h2>
           <p className="text-dark/50 mb-10">עדכונים, סטוריז מהשטח ותמונות — ברשתות שלי</p>
           <div className="flex flex-wrap justify-center gap-4">
             {SOCIAL.map((s) => (
-              <a key={s.name} href={s.url}
+              <motion.a
+                key={s.name}
+                href={s.url}
                 target={s.url.startsWith('mailto') ? undefined : '_blank'}
                 rel="noreferrer"
                 className={`flex flex-col items-center gap-2 bg-white rounded-2xl
                            border-2 border-orange-100 px-8 py-5 font-semibold text-dark text-sm
-                           hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ${s.color}`}>
+                           transition-colors duration-200 ${s.color}`}
+                whileHover={{ y: -4, boxShadow: '0 10px 30px rgba(0,0,0,0.08)' }}
+                whileTap={{ scale: 0.97 }}
+              >
                 <span className="text-3xl">{s.emoji}</span>
                 {s.name}
-              </a>
+              </motion.a>
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
     </div>
   )

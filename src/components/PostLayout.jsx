@@ -1,12 +1,7 @@
-// components/PostLayout.jsx
-// ============================================================
-// תבנית אחידה לכל הכתבות — עיצוב טקסט + שיתוף + ניווט
-//
-// שימוש: עטוף את תוכן הכתבה ב-<PostLayout meta={META}>
-// ============================================================
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import AnimatedSection from './AnimatedSection'
 
-// כפתורי שיתוף לסושיאל
 function ShareButtons({ title, url }) {
   const encoded = encodeURIComponent(url || window.location.href)
   const encodedTitle = encodeURIComponent(title)
@@ -53,33 +48,44 @@ function ShareButtons({ title, url }) {
       <span className="text-sm font-semibold text-dark/50 self-center">שתף:</span>
       {buttons.map((btn) =>
         btn.onClick ? (
-          <button key={btn.label} onClick={btn.onClick}
-            className={`share-btn text-white ${btn.color}`}>
+          <motion.button key={btn.label} onClick={btn.onClick}
+            className={`share-btn text-white ${btn.color}`}
+            whileHover={{ scale: 1.04, y: -1 }}
+            whileTap={{ scale: 0.96 }}>
             {btn.icon}
             {btn.label}
-          </button>
+          </motion.button>
         ) : (
-          <a key={btn.label} href={btn.url} target="_blank" rel="noreferrer"
-            className={`share-btn text-white ${btn.color}`}>
+          <motion.a key={btn.label} href={btn.url} target="_blank" rel="noreferrer"
+            className={`share-btn text-white ${btn.color}`}
+            whileHover={{ scale: 1.04, y: -1 }}
+            whileTap={{ scale: 0.96 }}>
             {btn.icon}
             {btn.label}
-          </a>
+          </motion.a>
         )
       )}
     </div>
   )
 }
 
-// הקומפוננטה הראשית
 export default function PostLayout({ meta, children }) {
   const { title, category, date, image, imageAlt, readTime } = meta
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-12">
-
+    <motion.article
+      className="max-w-3xl mx-auto px-6 py-12"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+    >
       {/* ===== כותרת ===== */}
-      <header className="mb-8">
-        {/* breadcrumb */}
+      <motion.header
+        className="mb-8"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.1, ease: 'easeOut' }}
+      >
         <div className="flex items-center gap-2 text-sm text-dark/40 mb-5">
           <Link to="/" className="hover:text-orange-600 transition-colors">בית</Link>
           <span>›</span>
@@ -94,7 +100,6 @@ export default function PostLayout({ meta, children }) {
           {title}
         </h1>
 
-        {/* מטא-דאטה */}
         <div className="flex flex-wrap items-center gap-4 text-sm text-dark/40 pb-5 border-b border-orange-100">
           <span>📅 {date}</span>
           {readTime && <span>⏱ {readTime} דקות קריאה</span>}
@@ -102,58 +107,63 @@ export default function PostLayout({ meta, children }) {
             <ShareButtons title={title} />
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* ===== תמונת שער ===== */}
       {image && (
-        <div className="rounded-3xl overflow-hidden shadow-xl mb-10 border-4 border-orange-50">
+        <motion.div
+          className="rounded-3xl overflow-hidden shadow-xl mb-10 border-4 border-orange-50"
+          initial={{ opacity: 0, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+        >
           <img src={image} alt={imageAlt || title}
             className="w-full h-80 md:h-96 object-cover" />
-        </div>
+        </motion.div>
       )}
 
-      {/* ===== תוכן הכתבה =====
-           כתוב כאן את התוכן תוך שימוש במחלקות:
-           <h2 className="post-h2">   — כותרת משנה
-           <p>                        — פסקה
-           <blockquote className="post-quote">  — ציטוט מודגש
-           <InlineImage>              — תמונה בתוך הטקסט (ראה קומפוננטה למטה)
-      ===== */}
-      <div className="space-y-5 text-dark/75 leading-loose text-[1.05rem]">
+      {/* ===== תוכן הכתבה ===== */}
+      <motion.div
+        className="space-y-5 text-dark/75 leading-loose text-[1.05rem]"
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3, ease: 'easeOut' }}
+      >
         {children}
-      </div>
+      </motion.div>
 
       {/* ===== שיתוף בתחתית ===== */}
-      <div className="mt-12 pt-8 border-t border-orange-100">
-        <p className="font-semibold text-dark/60 mb-4">אהבת? שתף את המסלול! 🇮🇱</p>
-        <ShareButtons title={title} />
-      </div>
+      <AnimatedSection y={20}>
+        <div className="mt-12 pt-8 border-t border-orange-100">
+          <p className="font-semibold text-dark/60 mb-4">אהבת? שתף את המסלול! 🇮🇱</p>
+          <ShareButtons title={title} />
+        </div>
 
-      {/* ===== חזרה לבלוג ===== */}
-      <div className="mt-8">
-        <Link to="/blog"
-          className="inline-flex items-center gap-2 text-orange-600 font-semibold
-                     hover:gap-3 transition-all duration-200">
-          ← חזרה לכל הפוסטים
-        </Link>
-      </div>
-    </article>
+        <div className="mt-8">
+          <Link to="/blog"
+            className="inline-flex items-center gap-2 text-orange-600 font-semibold
+                       hover:gap-3 transition-all duration-200">
+            ← חזרה לכל הפוסטים
+          </Link>
+        </div>
+      </AnimatedSection>
+    </motion.article>
   )
 }
 
-// ===== קומפוננטת תמונה בתוך כתבה =====
-// שימוש: <InlineImage src="..." alt="..." caption="כיתוב אופציונלי" />
 export function InlineImage({ src, alt, caption }) {
   return (
-    <figure className="my-8">
-      <div className="rounded-2xl overflow-hidden shadow-lg border border-orange-100">
-        <img src={src} alt={alt} className="w-full object-cover" loading="lazy" />
-      </div>
-      {caption && (
-        <figcaption className="text-center text-sm text-dark/40 mt-2 italic">
-          {caption}
-        </figcaption>
-      )}
-    </figure>
+    <AnimatedSection y={20}>
+      <figure className="my-8">
+        <div className="rounded-2xl overflow-hidden shadow-lg border border-orange-100">
+          <img src={src} alt={alt} className="w-full object-cover" loading="lazy" />
+        </div>
+        {caption && (
+          <figcaption className="text-center text-sm text-dark/40 mt-2 italic">
+            {caption}
+          </figcaption>
+        )}
+      </figure>
+    </AnimatedSection>
   )
 }

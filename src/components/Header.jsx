@@ -1,6 +1,7 @@
 // Header.jsx — כתום + כחול-לבן דגל ישראל
 import { useState, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const NAV_ITEMS = [
   { label: 'בית', to: '/' },
@@ -92,8 +93,12 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(null)
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-orange-100 shadow-sm">
-
+    <motion.header
+      className="sticky top-0 z-50 bg-white border-b border-orange-100 shadow-sm"
+      initial={{ opacity: 0, y: -12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+    >
       {/* פס כחול-לבן-כחול של דגל ישראל בראש הדף */}
       <div className="h-1 w-full" style={{
         background: 'linear-gradient(to right, #0038b8 0%, #0038b8 33%, #ffffff 33%, #ffffff 66%, #0038b8 66%, #0038b8 100%)'
@@ -133,13 +138,17 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-2">
             {SOCIAL.map((s) => (
-              <a key={s.name} href={s.url}
+              <motion.a
+                key={s.name} href={s.url}
                 target={s.url.startsWith('mailto') ? undefined : '_blank'}
                 rel="noreferrer" title={s.name}
                 className="w-8 h-8 flex items-center justify-center rounded-full
-                           text-dark/40 hover:text-orange-600 hover:bg-orange-50 transition-all">
+                           text-dark/40 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 {s.icon}
-              </a>
+              </motion.a>
             ))}
           </div>
           <button className="md:hidden flex flex-col gap-1.5 p-1"
@@ -153,7 +162,12 @@ export default function Header() {
 
       {/* מובייל */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-orange-100 px-6 py-4 flex flex-col gap-1">
+        <motion.div
+          className="md:hidden bg-white border-t border-orange-100 px-6 py-4 flex flex-col gap-1"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+        >
           {NAV_ITEMS.map((item) =>
             item.items ? (
               <div key={item.label}>
@@ -191,8 +205,8 @@ export default function Header() {
               </a>
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
-    </header>
+    </motion.header>
   )
 }

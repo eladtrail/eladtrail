@@ -1,5 +1,6 @@
-// components/PostCard.jsx
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, useInView } from 'framer-motion'
 
 const CATEGORY_LABELS = {
   israel: '🇮🇱 ישראל',
@@ -9,8 +10,17 @@ const CATEGORY_LABELS = {
 }
 
 export default function PostCard({ slug, title, excerpt, image, category, date }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+
   return (
-    <article className="post-card flex flex-col group">
+    <motion.article
+      ref={ref}
+      className="post-card flex flex-col group"
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       <Link to={`/posts/${slug}`} className="overflow-hidden block">
         <img src={image} alt={title}
           className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
@@ -33,6 +43,6 @@ export default function PostCard({ slug, title, excerpt, image, category, date }
           </Link>
         </div>
       </div>
-    </article>
+    </motion.article>
   )
 }
