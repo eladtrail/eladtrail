@@ -6,10 +6,14 @@ const META = {
   title:    'מעלה צרויה — הנחל הנסתר של מדבר יהודה',
   category: '🇮🇱 ישראל',
   date:     'אפריל 2025',
-  readTime: 14,
+  readTime: 16,
   image:    'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_1_rm1for.jpg',
   imageAlt: 'מעלה צרויה — מדבר יהודה',
 }
+
+// ── קיצורי URL ───────────────────────────────────────────────
+const img = (id) => `https://res.cloudinary.com/dcenbexvc/image/upload/v1/${id}`
+const vid = (id) => `https://res.cloudinary.com/dcenbexvc/video/upload/v1/${id}`
 
 // ── כרטיס מידע ──────────────────────────────────────────────
 function InfoCard({ icon, title, children }) {
@@ -30,18 +34,11 @@ function VideoClip({ src, caption }) {
     <AnimatedSection y={20}>
       <figure className="my-8">
         <div className="rounded-2xl overflow-hidden shadow-xl border border-orange-100 bg-black">
-          <video
-            src={src}
-            controls
-            playsInline
-            className="w-full max-h-[520px] object-contain"
-            preload="metadata"
-          />
+          <video src={src} controls playsInline
+            className="w-full max-h-[520px] object-contain" preload="metadata" />
         </div>
         {caption && (
-          <figcaption className="text-center text-sm text-dark/40 mt-2 italic">
-            {caption}
-          </figcaption>
+          <figcaption className="text-center text-sm text-dark/40 mt-2 italic">{caption}</figcaption>
         )}
       </figure>
     </AnimatedSection>
@@ -53,9 +50,7 @@ function TipCard({ num, title, text }) {
   return (
     <div className="flex gap-4 bg-white border border-orange-100 rounded-xl p-5 shadow-sm">
       <div className="flex-shrink-0 w-9 h-9 rounded-full bg-orange-600 text-white
-                      flex items-center justify-center font-bold text-sm">
-        {num}
-      </div>
+                      flex items-center justify-center font-bold text-sm">{num}</div>
       <div>
         <p className="font-bold text-dark mb-1">{title}</p>
         <p className="text-dark/60 text-sm leading-relaxed">{text}</p>
@@ -77,29 +72,20 @@ function TrailMap() {
           <iframe
             title="מפת מעלה צרויה"
             src="https://www.openstreetmap.org/export/embed.html?bbox=35.3500%2C31.3800%2C35.4500%2C31.4700&layer=mapnik&marker=31.4200%2C35.3900"
-            width="100%"
-            height="420"
-            style={{ border: 0, display: 'block' }}
-            loading="lazy"
+            width="100%" height="420" style={{ border: 0, display: 'block' }} loading="lazy"
           />
         </div>
         <div className="flex flex-wrap gap-4 mt-4 text-sm text-dark/60">
-          <span className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-orange-500 inline-block" />
-            מעלה צרויה
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-blue-500 inline-block" />
-            שמורת עין גדי (צפונה, ~5 ק"מ)
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-red-400 inline-block" />
-            ים המלח — מתחת לפני הים
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-green-500 inline-block" />
-            מצדה (דרומה, ~15 ק"מ)
-          </span>
+          {[
+            { color: 'bg-orange-500', label: 'מעלה צרויה' },
+            { color: 'bg-blue-500',   label: 'שמורת עין גדי (צפונה, ~5 ק"מ)' },
+            { color: 'bg-red-400',    label: 'ים המלח' },
+            { color: 'bg-green-500',  label: 'מצדה (דרומה, ~15 ק"מ)' },
+          ].map(({ color, label }) => (
+            <span key={label} className="flex items-center gap-1.5">
+              <span className={`w-3 h-3 rounded-full ${color} inline-block`} />{label}
+            </span>
+          ))}
         </div>
       </div>
     </AnimatedSection>
@@ -124,14 +110,11 @@ export default function PostMaalehTzruyah() {
         למטה — ודממה שלמה שקשה למצוא אותה כל כך קרוב לתל אביב.
       </p>
 
-      <VideoClip
-        src="https://res.cloudinary.com/dcenbexvc/video/upload/v1/EinGedi_1_zqen3e.mp4"
-        caption="מעלה צרויה — כך זה נראה מהשטח"
-      />
+      <VideoClip src={vid('EinGedi_1_zqen3e.mp4')} caption="מעלה צרויה — כך זה נראה מהשטח" />
 
       <PhotoGrid images={[
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_2_zz8jw3.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_3_s5c7qs.jpg', alt: 'מעלה צרויה' },
+        { src: img('EinGedi_2_zz8jw3.jpg') },
+        { src: img('EinGedi_3_s5c7qs.jpg') },
       ]} />
 
       {/* ── על המקום ──────────────────────────────────────── */}
@@ -143,10 +126,9 @@ export default function PostMaalehTzruyah() {
         המצוק והרכסים שמעליו.
       </p>
       <p>
-        השטח כאן שייך לאזור מדבר יהודה הדרומי — אחד הנופים הפחות מוכרים
-        ויחד עם זאת הדרמטיים ביותר בישראל. הסלעים כאן הם גיר ואבן גופרית
-        בגוונים של שמנת, כתום ואפור, מגולפים על ידי שחיקת גשמי חורף ורוחות
-        שנים.
+        הסלעים כאן הם גיר ואבן גופרית בגוונים של שמנת, כתום ואפור, מגולפים
+        על ידי שחיקת גשמי חורף ורוחות שנים. בשעת בוקר מוקדמת, כשהאור נוגע
+        בצוקים מהצד — הנחל פשוט נדלק.
       </p>
 
       <InfoCard icon="📍" title="מעלה צרויה — עובדות מהירות">
@@ -170,49 +152,33 @@ export default function PostMaalehTzruyah() {
       </InfoCard>
 
       <PhotoGrid images={[
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_4_cz1qsy.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_5_nl2zur.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_6_ti3ckv.jpg', alt: 'מעלה צרויה' },
+        { src: img('EinGedi_4_cz1qsy.jpg') },
+        { src: img('EinGedi_5_nl2zur.jpg') },
+        { src: img('EinGedi_6_ti3ckv.jpg') },
       ]} />
 
       {/* ── המסלול ────────────────────────────────────────── */}
       <h2 className="post-h2">המסלול — מהנחל אל המצוק</h2>
       <p>
-        המסלול מתחיל ממטה — מהאזור הנמוך הסמוך לכביש 90 לחוף ים המלח —
-        ועולה בתוך הנחל לכיוון הרכסים. מהר מאוד מוצאים את עצמכם בין
-        קירות סלע שצובעים כל כיוון בגוונים שונים. החמה נוגעת בחלק מהנחל
-        רק בשעות מסוימות — וכשהיא כן, היא עוצרת נשימה.
-      </p>
-      <p>
-        אחרי הקטע הראשוני בנחל מתחילה העלייה האמיתית — מעלה תלול ומאתגר
-        שמציב אתכם פתאום על שפת הצוק, עם נוף פנורמי מלא על ים המלח,
-        עבר הירדן מולכם, ואזור מצדה מדרום. זה אחד הנופים הכי עוצרי
-        נשימה שצילמתי בישראל.
+        המסלול מתחיל ממטה — מהאזור הנמוך הסמוך לכביש 90 — ועולה בתוך הנחל
+        לכיוון הרכסים. מהר מאוד מוצאים את עצמכם בין קירות סלע שצובעים
+        כל כיוון בגוונים שונים. החמה נוגעת בחלק מהנחל רק בשעות מסוימות —
+        וכשהיא כן, היא עוצרת נשימה.
       </p>
 
       <InlineImage
-        src="https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_7_latrbl.jpg"
-        alt="מעלה צרויה — הנחל"
+        src={img('EinGedi_7_latrbl.jpg')}
+        alt="נחל — הדרך אל המעלה"
         caption="בתוך הנחל — הצוקים מקיפים אתכם מכל כיוון"
       />
 
-      <VideoClip
-        src="https://res.cloudinary.com/dcenbexvc/video/upload/v1/EinGedi_2_cepzir.mp4"
-        caption="מעלה צרויה — עליה בתוך הנחל"
-      />
-
-      <p>
-        מה שמייחד את מעלה צרויה לעומת נחלים אחרים באזור הוא הצבע של הסלעים.
-        גוונים של חלודה, טרקוטה ושמנת מתערבבים בשכבות שמספרות מיליוני
-        שנות גיאולוגיה. בשעת בוקר מוקדמת, כשהאור נוגע בצוקים מהצד —
-        הנחל נדלק. פשוט אי אפשר לא לצלם.
-      </p>
+      <VideoClip src={vid('EinGedi_2_cepzir.mp4')} caption="עלייה בתוך הנחל" />
 
       <PhotoGrid images={[
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_8_qibjvo.jpg',  alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_9_bosnd2.jpg',  alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_10_jcqwke.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_11_ddbvvj.jpg', alt: 'מעלה צרויה' },
+        { src: img('EinGedi_8_qibjvo.jpg') },
+        { src: img('EinGedi_9_bosnd2.jpg') },
+        { src: img('EinGedi_10_jcqwke.jpg') },
+        { src: img('EinGedi_11_ddbvvj.jpg') },
       ]} />
 
       <blockquote className="post-quote">
@@ -220,41 +186,28 @@ export default function PostMaalehTzruyah() {
         ואתה רואה את כל ים המלח. זה מה שרק ישראל יכולה לתת לך."
       </blockquote>
 
-      <VideoClip
-        src="https://res.cloudinary.com/dcenbexvc/video/upload/v1/EinGedi_3_foauhd.mp4"
-        caption="המעלה — כך נראית העלייה"
-      />
+      <VideoClip src={vid('EinGedi_3_foauhd.mp4')} caption="המעלה — כך נראית העלייה" />
 
-      {/* ── נוף ורגעים ────────────────────────────────────── */}
+      {/* ── נוף מלמעלה ────────────────────────────────────── */}
       <h2 className="post-h2">הנוף מלמעלה — שווה כל מדרגה</h2>
       <p>
         כשמגיעים לחלק העליון של המסלול, פתאום נגמרים הצוקים שמשני
-        הצדדים ומתגלה נוף 270 מעלות שלא מוכר מתמונות. ים המלח נראה
-        כמו מראה עצומה שנשמטה לתוך השקע הגדול ביותר על פני כדור הארץ —
-        כ-430 מטר מתחת לפני הים.
-      </p>
-      <p>
-        הרי עבר הירדן מולכם — ירוקים בחורף, חומים בקיץ. מדרום — מצוק
-        מצדה מיד מזוהה. ומצפון, אם היום בהיר, רואים את ההתמשכות של
-        הים לכיוון עין גדי וקיבוץ עין גדי. אין טלפון שיכול לתפוס את
-        המימד הזה. צריך לעמוד שם.
+        הצדדים ומתגלה נוף 270 מעלות — ים המלח נראה כמו מראה עצומה
+        שנשמטה לתוך השקע הגדול ביותר על פני כדור הארץ.
       </p>
 
       <InlineImage
-        src="https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_12_ondvzy.jpg"
+        src={img('EinGedi_12_ondvzy.jpg')}
         alt="נוף מהמעלה"
         caption="מהחלק העליון — ים המלח ועבר הירדן"
       />
 
-      <VideoClip
-        src="https://res.cloudinary.com/dcenbexvc/video/upload/v1/EinGedi_4_bin3hr.mp4"
-        caption="הנוף מלמעלה"
-      />
+      <VideoClip src={vid('EinGedi_4_bin3hr.mp4')} caption="הנוף מלמעלה" />
 
       <PhotoGrid images={[
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_13_lilhdk.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_14_ossmbq.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_15_vexmgl.jpg', alt: 'מעלה צרויה' },
+        { src: img('EinGedi_13_lilhdk.jpg') },
+        { src: img('EinGedi_14_ossmbq.jpg') },
+        { src: img('EinGedi_15_vexmgl.jpg') },
       ]} />
 
       {/* ── חיות הבר ──────────────────────────────────────── */}
@@ -262,61 +215,109 @@ export default function PostMaalehTzruyah() {
       <p>
         האזור הזה הוא שטח חיים של יעלים, שועלים, וציפורי מדבר נדירות.
         הסיכוי לראות יעלים כאן גבוה — הם לא מפחדים מהליכים, ולפעמים
-        עוברים ממש לידך על הצוק כאילו אתה שם כדי לצפות בהם (ואתה כן).
-      </p>
-      <p>
-        בבוקר מוקדם סיכויי הפגישה עם חיות גבוהים במיוחד — לפני שהשמש
-        מתחממת והם עולים לצל. שמרנו שקט ביציאה מהמכונית ובכמה מקרים
-        ראינו יעלים שנחו על הסלעים כאילו ביקרנו בבית שלהם.
+        עוברים ממש לידך על הצוק כאילו אתה שם כדי לצפות בהם.
       </p>
 
       <InlineImage
-        src="https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_16_kjgxjl.jpg"
+        src={img('EinGedi_16_kjgxjl.jpg')}
         alt="יעלים בשטח"
         caption="יעלים — ממש לא עושים את עצמם מוטרדים"
       />
 
-      <VideoClip
-        src="https://res.cloudinary.com/dcenbexvc/video/upload/v1/EinGedi_5_j1pbw9.mp4"
-        caption="פגישה עם יעלים בשטח"
-      />
+      <VideoClip src={vid('EinGedi_5_j1pbw9.mp4')} caption="פגישה עם יעלים בשטח" />
 
       <PhotoGrid images={[
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_17_phryah.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_18_yecxay.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_19_bjwqvg.jpg', alt: 'מעלה צרויה' },
+        { src: img('EinGedi_17_phryah.jpg') },
+        { src: img('EinGedi_18_yecxay.jpg') },
+        { src: img('EinGedi_19_bjwqvg.jpg') },
       ]} />
 
       {/* ── עוד מהשטח ─────────────────────────────────────── */}
-      <h2 className="post-h2">עוד מהשטח — רגעים שלא שוכחים</h2>
-      <p>
-        מעלה צרויה הוא לא "מסלול ראשי" בשום מדריך. אין שם קיוסק, אין
-        שלטי כיוון ססגוניים, אין דוכן ממרחים לים המלח בסוף. מה שיש
-        שם זה השטח — כמות לא פילטר. וזה בדיוק מה שאוהבים.
-      </p>
-      <p>
-        אחרי המסלול — ים המלח ממש שם. חניה בנחל צאלים או בחוף ים המלח
-        הפתוח (חינם, ציוד משלך) ורחצה במים הכבדים ביותר על פני כדור
-        הארץ — זה הסיום שכל גוף דורש אחרי 4 שעות עם תרמיל בשמש.
-      </p>
+      <h2 className="post-h2">עוד מהשטח</h2>
 
-      <VideoClip
-        src="https://res.cloudinary.com/dcenbexvc/video/upload/v1/EinGedi_6_rdd263.mp4"
-        caption="עוד רגעים מהשטח"
-      />
+      <VideoClip src={vid('EinGedi_6_rdd263.mp4')} caption="עוד רגעים מהשטח" />
 
       <PhotoGrid images={[
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_20_jhvyr8.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_21_rmpnoa.jpg', alt: 'מעלה צרויה' },
-        { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/EinGedi_22_qx7gwl.jpg', alt: 'מעלה צרויה' },
+        { src: img('EinGedi_20_jhvyr8.jpg') },
+        { src: img('EinGedi_21_rmpnoa.jpg') },
+        { src: img('EinGedi_22_qx7gwl.jpg') },
+        { src: img('EinGedi_23_trnxlj.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_24_xiipbn.jpg') },
+        { src: img('EinGedi_25_z4ipgg.jpg') },
+        { src: img('EinGedi_26_ascj8a.jpg') },
+        { src: img('EinGedi_27_uz0677.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_28_yfqzq8.jpg') },
+        { src: img('EinGedi_29_ddocnz.jpg') },
+        { src: img('EinGedi_30_o3esgg.jpg') },
+        { src: img('EinGedi_31_d5knuo.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_32_sg1nvh.jpg') },
+        { src: img('EinGedi_33_dstxcd.jpg') },
+        { src: img('EinGedi_34_sznhza.jpg') },
+        { src: img('EinGedi_35_hqjnbo.jpg') },
+      ]} />
+
+      {/* ── גלריה מלאה ────────────────────────────────────── */}
+      <h2 className="post-h2">גלריה — כל הרגעים</h2>
+      <p>
+        למי שרוצה לראות את מלוא הטיול — כל התמונות מהשטח, כמות ופילטרים.
+      </p>
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_36_itajr4.jpg') },
+        { src: img('EinGedi_37_czipth.jpg') },
+        { src: img('EinGedi_38_e0huv7.jpg') },
+        { src: img('EinGedi_39_qvktem.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_40_vqkvjc.jpg') },
+        { src: img('EinGedi_41_qq5gmd.jpg') },
+        { src: img('EinGedi_42_fpyv6s.jpg') },
+        { src: img('EinGedi_43_yy5rrw.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_44_c8lm54.jpg') },
+        { src: img('EinGedi_45_ikdvat.jpg') },
+        { src: img('EinGedi_46_pow0xg.jpg') },
+        { src: img('EinGedi_47_rccu1a.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_48_arhyli.jpg') },
+        { src: img('EinGedi_49_v8nzkd.jpg') },
+        { src: img('EinGedi_50_ig1ivt.jpg') },
+        { src: img('EinGedi_51_nyb2tb.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_52_pc1euo.jpg') },
+        { src: img('EinGedi_53_aytxea.jpg') },
+        { src: img('EinGedi_54_olhcb5.jpg') },
+        { src: img('EinGedi_55_uwlwn7.jpg') },
+      ]} />
+
+      <PhotoGrid images={[
+        { src: img('EinGedi_56_axaq3z.jpg') },
+        { src: img('EinGedi_57_rpytt8.jpg') },
+        { src: img('EinGedi_6_ti3ckv.jpg') },
       ]} />
 
       {/* ── מפה ───────────────────────────────────────────── */}
       <h2 className="post-h2">מפת האזור</h2>
       <p>
-        מעלה צרויה ממוקם לאורך כביש 90 — ים המלח, בין עין גדי לצפון
-        לבין אזור נחל צאלים ומצדה לדרום. אין שלט מסודר בכביש — משתמשים
-        בנקודות ציון ובוייז/גוגל מפות עם הכינוי "מעלה צרויה".
+        מעלה צרויה ממוקם לאורך כביש 90 בין עין גדי לצפון לבין אזור נחל
+        צאלים ומצדה לדרום. אין שלט מסודר בכביש — משתמשים בוייז עם הכינוי
+        "מעלה צרויה".
       </p>
 
       <TrailMap />
@@ -368,17 +369,17 @@ export default function PostMaalehTzruyah() {
         <TipCard num={1} title="אל תבואו בקיץ — ברצינות"
           text="מדבר יהודה בקיץ הוא 42–46 מעלות ללא צל ובלי מים בנחל. מסלול כזה בתנאים אלה הוא לא אתגר — הוא סכנה אמיתית. חכו לחורף." />
         <TipCard num={2} title="נעלי שטח — לא אופציה"
-          text="הסלעים באזור חלקים וחדים. כפכפים, נעלי ספורט רגילות וודאי נעלי עור — לא מתאימים. נעל שטח עם סוליה מחוספסת ותמיכת קרסול — חובה." />
+          text="הסלעים באזור חלקים וחדים. כפכפים ונעלי ספורט רגילות לא מתאימים. נעל שטח עם סוליה מחוספסת ותמיכת קרסול — חובה." />
         <TipCard num={3} title="צאו בשניים לפחות"
           text="זה לא מסלול מוסדר עם פקחים וסיור. אם נפצעים — צריך מישהו להזעיק עזרה. לא להיכנס לבד לנחל מדברי לא מוכר." />
         <TipCard num={4} title="מים ואוכל — יותר ממה שמתכננים"
-          text="3 ליטר לאדם גם בחורף. בקיץ — לא רלוונטי, לא הולכים. שקית אנרגיה, אגוזים, חטיפי אנרגיה — העלייה מכלה אנרגיה יותר מהר ממה שנדמה." />
+          text="3 ליטר לאדם גם בחורף. שקית אנרגיה, אגוזים, חטיפי אנרגיה — העלייה מכלה אנרגיה יותר מהר ממה שנדמה." />
         <TipCard num={5} title="שמרו על המסלול המסומן"
-          text="אין הרבה שלטים — שמרו על וייז (ניווט לנקודה) או על קובץ GPX שהורדתם מראש. מדבר יהודה עם כניסת חושך ובלי כיוון — לא מצב שרוצים להיות בו." />
+          text="אין הרבה שלטים — שמרו על וייז (ניווט לנקודה) או קובץ GPX שהורדתם מראש. מדבר יהודה עם כניסת חושך ובלי כיוון — לא מצב שרוצים להיות בו." />
         <TipCard num={6} title="לפצות את המסלול עם ים המלח"
-          text="אחרי הירידה — ים המלח ממש ליד. הרחצה במים עם 34% מליחות היא החתימה המושלמת לכל מסלול מדברי. ציוד: מגבת ישנה, נעלי גומי (הסלעים חדים), ומים לשטיפה." />
+          text="אחרי הירידה — ים המלח ממש ליד. הרחצה במים עם 34% מליחות היא החתימה המושלמת לכל מסלול מדברי." />
         <TipCard num={7} title="הודיעו על הכניסה"
-          text="לפני שנכנסים — שלחו לאחד/ת לבית הודעה עם שם המסלול, מספר המשתתפים ושעת היציאה המתוכננת. אם לא מתקשרים עד שעה X — לדווח למשטרה." />
+          text="לפני שנכנסים — שלחו לאחד לבית הודעה עם שם המסלול, מספר המשתתפים ושעת היציאה. אם לא מתקשרים עד שעה X — לדווח למשטרה." />
       </div>
 
       {/* ── סיכום ─────────────────────────────────────────── */}
@@ -388,10 +389,6 @@ export default function PostMaalehTzruyah() {
         ועומדים בתור לשמורה — אתם יורדים קצת דרומה, מציבים את המכונית
         בצד הכביש, ומוצאים לעצמכם נוף שממש לא עמוס. זה מה שמסלולים
         כאלה עושים לך — מזכירים שישראל עדיין לא נגמרת.
-      </p>
-      <p>
-        מדבר יהודה הוא לא אסון — הוא ספר שמחכה שיקראו אותו. מעלה צרויה
-        הוא פרק אחד שממש שווה להתחיל איתו.
       </p>
 
       <blockquote className="post-quote">
