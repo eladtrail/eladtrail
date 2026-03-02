@@ -5,8 +5,8 @@ const META = {
   category: '💡 טיפים',
   date:     'דצמבר 2024',
   readTime: 4,
-  image:    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
-  imageAlt: 'טיפים לטיול',
+  image:    'https://upload.wikimedia.org/wikipedia/commons/e/ea/Berg_Arbel_oberhalb_des_See_Genezareth%2C_Israel-Trail.jpg',
+  imageAlt: 'שביל ישראל — הר ארבל מעל הכינרת',
 }
 
 export default function PostTips5() {

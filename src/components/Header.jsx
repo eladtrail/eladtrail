@@ -99,15 +99,15 @@ export default function Header() {
         background: 'linear-gradient(to right, #0038b8 0%, #0038b8 33%, #ffffff 33%, #ffffff 66%, #0038b8 66%, #0038b8 100%)'
       }} />
 
-      <div className="max-w-7xl mx-auto px-6 h-[68px] flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-6 h-[100px] flex items-center justify-between gap-4">
 
         {/* לוגו */}
-        <Link to="/" className="flex items-center gap-2 whitespace-nowrap">
-          <span className="text-xl">🇮🇱</span>
-          <span className="font-display text-2xl">
-            <span className="text-dark">Elad</span>
-            <span className="text-orange-600">Trail</span>
-          </span>
+        <Link to="/" className="flex items-center whitespace-nowrap">
+          <img
+            src="https://res.cloudinary.com/dcenbexvc/image/upload/v1772019375/logo_pwz96l.jpg"
+            alt="EladTrail"
+            className="h-[88px] w-auto object-contain rounded-xl"
+          />
         </Link>
 
         {/* ניווט דסקטופ */}

@@ -25,37 +25,52 @@ export default function Home() {
             alt="ארץ ישראל"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/10 to-white/80" />
+          {/* וינייט עדין — מחשיך רק בקצוות, לא מכסה את התמונה */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/55" />
         </div>
 
         {/* תוכן */}
         <div className="relative z-10 flex flex-col items-center">
-          {/* דגלים + טאג */}
-          <div className="flex items-center gap-3 mb-6 fade-up">
-            <span className="text-3xl">🇮🇱</span>
-            <span className="bg-white/90 backdrop-blur text-orange-600 text-xs font-bold
-                             tracking-[2px] uppercase px-5 py-2 rounded-full shadow-sm border border-orange-100">
+          {/* לוגו + טאג */}
+          <div className="flex flex-col items-center gap-4 mb-7 fade-up">
+            <img
+              src="https://res.cloudinary.com/dcenbexvc/image/upload/v1772019375/logo_pwz96l.jpg"
+              alt="EladTrail"
+              className="h-20 w-auto object-contain rounded-2xl shadow-xl"
+            />
+            <span className="bg-white/15 backdrop-blur-sm text-white text-xs font-bold
+                             tracking-[2px] uppercase px-5 py-2 rounded-full
+                             border border-white/30 shadow-md">
               טיולים אותנטיים בארץ ובעולם
             </span>
-            <span className="text-3xl">🇮🇱</span>
           </div>
 
-          <h1 className="font-display text-5xl md:text-7xl text-dark leading-tight mb-5 fade-up-delay-1 drop-shadow-sm">
+          <h1
+            className="font-display text-6xl md:text-8xl text-white leading-[1.1] mb-5 fade-up-delay-1"
+            style={{ textShadow: '0 2px 24px rgba(0,0,0,0.45)' }}
+          >
             הטיולים של אלעד
             <br />
-            <span className="text-orange-600">מהשטח, בלי פילטרים</span>
+            <span className="text-orange-400">מהשטח, בלי פילטרים</span>
           </h1>
 
-          <p className="max-w-xl text-lg text-dark/70 mb-8 fade-up-delay-2 leading-relaxed">
+          <p
+            className="max-w-xl text-lg text-white/85 mb-9 fade-up-delay-2 leading-relaxed"
+            style={{ textShadow: '0 1px 8px rgba(0,0,0,0.5)' }}
+          >
             מסלולים, טיפים וסיפורים מהארץ הזאת שאנחנו אוהבים —<br />
             כי כל שביל בישראל מספר סיפור אחר.
           </p>
 
           <div className="flex gap-4 fade-up-delay-2">
-            <Link to="/blog" className="btn-primary text-base px-10 py-4 shadow-lg shadow-orange-200">
+            <Link to="/blog" className="btn-primary text-base px-10 py-4 shadow-lg shadow-black/30">
               כל הפוסטים ↓
             </Link>
-            <Link to="/about" className="btn-israel text-base px-8 py-4">
+            <Link to="/about"
+              className="text-base px-8 py-4 rounded-full font-semibold text-white
+                         border-2 border-white/50 backdrop-blur-sm bg-white/10
+                         hover:bg-white/20 hover:-translate-y-0.5 transition-all duration-200
+                         shadow-md">
               אודות אלעד
             </Link>
           </div>
@@ -127,11 +142,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-orange-100">
-              {/* ← שנה לתמונה של אלעד */}
               <img
                 src="https://res.cloudinary.com/dcenbexvc/image/upload/v1772181927/Elad_twmatp.jpg"
                 alt="אלעד דויטש"
-                className="w-full h-80 object-cover"
+                className="w-full h-80 object-cover object-top"
               />
             </div>
             {/* תג קישוט */}
