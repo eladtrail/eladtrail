@@ -1,4 +1,6 @@
 import PostLayout, { InlineImage } from '../components/PostLayout'
+import ImageSlider from '../components/ImageSlider'
+import AnimatedSection from '../components/AnimatedSection'
 
 const META = {
   title:    'אלבניה עם החברים',
@@ -265,6 +267,31 @@ export default function PostAlbaniaFriends() {
         title="בואו מוקדם בעונה"
         text="יוני ותחילת יולי עדיפים על אוגוסט. יותר שקט, פחות תיירים, מחירים נמוכים יותר. הים חם מאוד וכמעט אין עומס."
       />
+
+      {/* ── מצגת ──────────────────────────────────────────── */}
+      <h2 className="post-h2">אלבניה — הפנינה הפראית של הבלקן</h2>
+      <p>
+        14 תמונות שמספרות את הנסיעה טוב יותר מכל מילה. גללו קדימה.
+      </p>
+
+      <AnimatedSection y={24}>
+        <ImageSlider images={[
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_1_ufoc4c.jpg',  caption: 'אלבניה — הפנינה הפראית של הבלקן' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_2_gp1y5y.jpg',  caption: 'הריביירה האלבנית — מים בטורקיז שהעולם עוד לא גילה' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_3_refvdm.jpg',  caption: 'בין הים להרים — נוף שקשה להפסיק להסתכל עליו' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_4_ymkbqv.jpg',  caption: 'Ksamil — גן עדן על הגבול עם יוון' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_5_tzwkh2.jpg',  caption: 'החוף האלבני — שקיפות שקשה להאמין' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_6_afawpu.jpg',  caption: 'Llogara Pass — מעבר ההרים שגרם לנו לעצור ולנשום' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_7_bvu1mn.jpg',  caption: 'בראט — עיר אלף החלונות, אתר UNESCO' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_8_ybt2e8.jpg',  caption: 'מהטירה הביזנטית — נוף על הנהר ועל העיר מתחת' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_9_laav4q.jpg',  caption: 'הכפרים הנסתרים של ההרים האלבניים' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_10_x1ihok.jpg', caption: 'טירנה — הבירה שמסרבת להיות עגומה' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_11_wvswf6.jpg', caption: 'רחובות Blloku — שכונת הגיהינום הקומוניסטי שהפכה למרכז חיים' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_12_c9k1qn.jpg', caption: 'שקיעה על חוף הים — הרגע שלא שוכחים' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_13_h4rfyt.jpg', caption: 'אנשים ונופים — לב הנסיעה' },
+          { src: 'https://res.cloudinary.com/dcenbexvc/image/upload/v1/Albania_The_Wild_Pearl_of_the_Balkans_14_nylykz.jpg', caption: 'אלבניה — ניפגש שוב. זה לא סוף, זה התחלה.' },
+        ]} />
+      </AnimatedSection>
 
       {/* ── סיכום ─────────────────────────────────────────── */}
       <h2 className="post-h2">אחרי הכל — האם חוזרים?</h2>
