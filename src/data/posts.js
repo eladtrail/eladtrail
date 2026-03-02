@@ -12,6 +12,15 @@
 
 export const POSTS = [
   {
+    slug:     'albania-friends',
+    title:    'אלבניה עם החברים',
+    excerpt:  'קיץ 2020, חמישה חברים והמדינה הכי מפתיעה באירופה — ריביירה, הרים, אוכל מדהים ואנשים שחיממו את הלב.',
+    image:    'https://res.cloudinary.com/dcenbexvc/image/upload/v1770728080/IMG_20190723_132443_lykmdx.jpg',
+    category: 'world',
+    date:     'אוגוסט 2020',
+    tags:     ['אלבניה', 'חו"ל', 'ריביירה', 'טיול עם חברים'],
+  },
+  {
     slug:     'bashanit-range',
     title:    'רכס בשנית — לב הגולן הצפוני',
     excerpt:  'יערות אלון, בזלת שחורה ונופים לחרמון ולחולה — מדריך מקיף לאחד המסלולים הכי שווים ופחות מוכרים בצפון.',
@@ -40,7 +49,7 @@ export const POSTS = [
     slug:     'gear-bag-review',
     title:    'התרמיל שהלך איתי לכל מקום',
     excerpt:  'סקירה כנה על התרמיל שאיתי 3 שנים — מה עובד, מה לא, ולמי מומלץ.',
-    image:    'https://upload.wikimedia.org/wikipedia/commons/7/73/Israel_National_Trail_on_red_dirt_road.JPG',
+    image:    'https://upload.wikimedia.org/wikipedia/commons/0/0d/Osprey_Atmos_AG_65_Backpack_%2847347379172%29.jpg',
     category: 'gear',
     date:     'נובמבר 2024',
   },

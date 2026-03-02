@@ -5,8 +5,8 @@ const META = {
   category: '🎒 ציוד',
   date:     'נובמבר 2024',
   readTime: 10,
-  image:    'https://upload.wikimedia.org/wikipedia/commons/7/73/Israel_National_Trail_on_red_dirt_road.JPG',
-  imageAlt: 'שביל ישראל — דרך אדמה אדומה בגליל',
+  image:    'https://upload.wikimedia.org/wikipedia/commons/0/0d/Osprey_Atmos_AG_65_Backpack_%2847347379172%29.jpg',
+  imageAlt: 'Osprey Atmos AG 65 — התרמיל שהלך איתי לכל מקום',
 }
 
 // ── כרטיס מידע ──────────────────────────────────────────────
