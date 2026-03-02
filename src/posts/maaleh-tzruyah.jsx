@@ -1,4 +1,5 @@
 import PostLayout, { InlineImage } from '../components/PostLayout'
+import PhotoGrid from '../components/PhotoGrid'
 import AnimatedSection from '../components/AnimatedSection'
 
 const META = {
@@ -20,29 +21,6 @@ function InfoCard({ icon, title, children }) {
       </div>
       <div className="text-dark/70 leading-relaxed">{children}</div>
     </div>
-  )
-}
-
-// ── רשת תמונות ───────────────────────────────────────────────
-function PhotoGrid({ images }) {
-  const cols = images.length === 2 ? 'grid-cols-2'
-             : images.length === 3 ? 'grid-cols-3'
-             : 'grid-cols-2 md:grid-cols-4'
-  return (
-    <AnimatedSection y={20}>
-      <div className={`grid ${cols} gap-2 my-8`}>
-        {images.map((img, i) => (
-          <div key={i} className="rounded-xl overflow-hidden shadow-md border border-orange-100 aspect-[4/3]">
-            <img
-              src={img.src}
-              alt={img.alt || 'מעלה צרויה'}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-          </div>
-        ))}
-      </div>
-    </AnimatedSection>
   )
 }
 

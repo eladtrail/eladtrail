@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import AnimatedSection from './AnimatedSection'
+import Lightbox from './Lightbox'
 
 function ShareButtons({ title, url }) {
   const encoded = encodeURIComponent(url || window.location.href)
@@ -152,18 +154,35 @@ export default function PostLayout({ meta, children }) {
 }
 
 export function InlineImage({ src, alt, caption }) {
+  const [open, setOpen] = useState(false)
   return (
-    <AnimatedSection y={20}>
-      <figure className="my-8">
-        <div className="rounded-2xl overflow-hidden shadow-lg border border-orange-100">
-          <img src={src} alt={alt} className="w-full object-cover" loading="lazy" />
-        </div>
-        {caption && (
-          <figcaption className="text-center text-sm text-dark/40 mt-2 italic">
-            {caption}
-          </figcaption>
-        )}
-      </figure>
-    </AnimatedSection>
+    <>
+      <AnimatedSection y={20}>
+        <figure className="my-8">
+          <div
+            className="rounded-2xl overflow-hidden shadow-lg border border-orange-100
+                       cursor-zoom-in group relative"
+            onClick={() => setOpen(true)}
+          >
+            <img src={src} alt={alt} className="w-full object-cover
+                       group-hover:scale-[1.02] transition-transform duration-500" loading="lazy" />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15
+                            transition-colors duration-300 flex items-center justify-center">
+              <span className="text-white text-3xl opacity-0 group-hover:opacity-100
+                               transition-opacity duration-300 drop-shadow-lg">⤢</span>
+            </div>
+          </div>
+          {caption && (
+            <figcaption className="text-center text-sm text-dark/40 mt-2 italic">
+              {caption}
+            </figcaption>
+          )}
+        </figure>
+      </AnimatedSection>
+
+      {open && (
+        <Lightbox src={src} alt={alt} caption={caption} onClose={() => setOpen(false)} />
+      )}
+    </>
   )
 }
