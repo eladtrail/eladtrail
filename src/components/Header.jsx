@@ -26,19 +26,19 @@ const NAV_ITEMS = [
   {
     label: 'טיפים',
     items: [
-      { label: '🎒 ציוד מומלץ',   to: '/blog?cat=tips' },
-      { label: '🥗 תזונה בשטח',   to: '/blog?cat=tips' },
-      { label: '🛡️ בטיחות',       to: '/blog?cat=tips' },
-      { label: '🗺️ תכנון מסלול',  to: '/blog?cat=tips' },
+      { label: '🎒 ציוד מומלץ',   to: '/tips/gear-guide' },
+      { label: '🥗 תזונה בשטח',   to: '/tips/nutrition'  },
+      { label: '🛡️ בטיחות',       to: '/tips/safety'     },
+      { label: '🗺️ תכנון מסלול',  to: '/tips/planning'   },
     ],
   },
   {
     label: 'ציוד',
     items: [
-      { label: '👟 נעליים',  to: '/blog?cat=gear' },
-      { label: '🎒 תרמילים', to: '/blog?cat=gear' },
-      { label: '🧭 ניווט',   to: '/blog?cat=gear' },
-      { label: '🧥 ביגוד',   to: '/blog?cat=gear' },
+      { label: '👟 נעליים',  to: '/gear/shoes'      },
+      { label: '🎒 תרמילים', to: '/gear/backpacks'  },
+      { label: '🧭 ניווט',   to: '/gear/navigation' },
+      { label: '🧥 ביגוד',   to: '/gear/clothing'   },
     ],
   },
   { label: 'אודות',   to: '/about'   },

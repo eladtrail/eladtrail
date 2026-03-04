@@ -9,11 +9,24 @@ import About   from './pages/About'
 import Contact from './pages/Contact'
 import Blog    from './pages/Blog'
 
+// ===== עמודי טיפים =====
+import TipsGearGuide from './pages/tips/GearGuide'
+import TipsNutrition from './pages/tips/Nutrition'
+import TipsSafety    from './pages/tips/Safety'
+import TipsPlanning  from './pages/tips/Planning'
+
+// ===== עמודי ציוד =====
+import GearShoes      from './pages/gear/Shoes'
+import GearBackpacks  from './pages/gear/Backpacks'
+import GearNavigation from './pages/gear/Navigation'
+import GearClothing   from './pages/gear/Clothing'
+
 // ===== פוסטים — כל פוסט = קובץ JSX נפרד =====
 // כדי להוסיף פוסט חדש:
 //   1. צור קובץ ב- src/posts/שם-הפוסט.jsx
 //   2. ייבא אותו כאן (import)
 //   3. הוסף <Route> בהמשך
+import PostTanzaniaAfrica from './posts/tanzania-africa'
 import PostMaalehTzruyah from './posts/maaleh-tzruyah'
 import PostAlbaniaFriends from './posts/albania-friends'
 import PostBashanitRange from './posts/bashanit-range'
@@ -34,12 +47,25 @@ export default function App() {
 
         {/* ===== נתיבי הפוסטים ===== */}
         {/* path="/posts/שם-הנתיב" — חייב להתאים ל- slug בקובץ הפוסט */}
+        <Route path="/posts/tanzania-africa"     element={<PostTanzaniaAfrica />} />
         <Route path="/posts/maaleh-tzruyah"     element={<PostMaalehTzruyah />} />
         <Route path="/posts/albania-friends"    element={<PostAlbaniaFriends />} />
         <Route path="/posts/bashanit-range"    element={<PostBashanitRange />} />
         <Route path="/posts/shvil-israel"      element={<PostShvilIsrael />} />
         <Route path="/posts/5-tips-beginners"  element={<PostTips5 />}      />
         <Route path="/posts/gear-bag-review"   element={<PostGearBag />}    />
+
+        {/* ===== נתיבי טיפים ===== */}
+        <Route path="/tips/gear-guide" element={<TipsGearGuide />} />
+        <Route path="/tips/nutrition"  element={<TipsNutrition />} />
+        <Route path="/tips/safety"     element={<TipsSafety />}    />
+        <Route path="/tips/planning"   element={<TipsPlanning />}  />
+
+        {/* ===== נתיבי ציוד ===== */}
+        <Route path="/gear/shoes"      element={<GearShoes />}      />
+        <Route path="/gear/backpacks"  element={<GearBackpacks />}  />
+        <Route path="/gear/navigation" element={<GearNavigation />} />
+        <Route path="/gear/clothing"   element={<GearClothing />}   />
 
       </Route>
     </Routes>

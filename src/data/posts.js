@@ -12,6 +12,15 @@
 
 export const POSTS = [
   {
+    slug:     'tanzania-africa',
+    title:    "טנזניה — מרו, קילימנג'רו וספארי",
+    excerpt:  "גג אפריקה, 5,895 מטר, ספארי בסרנגטי — 14 הימים הכי מאתגרים ומרגשים שעשיתי בחיי.",
+    image:    'https://upload.wikimedia.org/wikipedia/commons/0/00/Kilimanjaro_from_Amboseli.jpg',
+    category: 'world',
+    date:     'ינואר 2025',
+    tags:     ["קילימנג'רו", 'טנזניה', 'אפריקה', 'ספארי', 'הר מרו'],
+  },
+  {
     slug:     'maaleh-tzruyah',
     title:    'מעלה צרויה — הנחל הנסתר של מדבר יהודה',
     excerpt:  'נחל מדברי עמוק בין עין גדי למצדה, עם צוקים צבעוניים, יעלים ונוף על ים המלח. אחד המסלולים הכי שווים ופחות מוכרים בישראל.',
