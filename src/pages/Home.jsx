@@ -22,7 +22,7 @@ export default function Home() {
         {/* תמונת רקע */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://res.cloudinary.com/dcenbexvc/image/upload/v1770728477/277639446_364194338927345_839136902550693466_n_mwv0pk.jpg"
+            src="https://res.cloudinary.com/dcenbexvc/image/upload/v1772645608/_______2k_delpmaspu_skhwaw.jpg"
             alt="ארץ ישראל"
             className="w-full h-full object-cover"
           />
@@ -78,7 +78,7 @@ export default function Home() {
           </motion.p>
 
           <motion.div
-            className="flex gap-4"
+            className="flex flex-col items-center gap-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.55, ease: 'easeOut' }}
